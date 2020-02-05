@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2020 at 05:43 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.1.28
+-- Generation Time: Feb 05, 2020 at 11:05 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -62,6 +62,13 @@ CREATE TABLE `attendance` (
   `num_hr` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`id`, `employee_id`, `date`, `time_in`, `status`, `time_out`, `num_hr`) VALUES
+(88, 6, '2020-02-05', '16:19:48', 0, '16:20:42', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -84,8 +91,18 @@ CREATE TABLE `cashadvance` (
   `id` int(11) NOT NULL,
   `date_advance` date NOT NULL,
   `employee_id` varchar(15) NOT NULL,
-  `amount` double NOT NULL
+  `amount` double NOT NULL,
+  `sss` double NOT NULL,
+  `pagibig` double NOT NULL,
+  `philhealth` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cashadvance`
+--
+
+INSERT INTO `cashadvance` (`id`, `date_advance`, `employee_id`, `amount`, `sss`, `pagibig`, `philhealth`) VALUES
+(7, '2020-02-05', '6', 500, 500, 500, 500);
 
 -- --------------------------------------------------------
 
@@ -98,15 +115,6 @@ CREATE TABLE `deductions` (
   `description` varchar(100) NOT NULL,
   `amount` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `deductions`
---
-
-INSERT INTO `deductions` (`id`, `description`, `amount`) VALUES
-(1, 'SSS', 100),
-(2, 'Pagibig', 150),
-(3, 'PhilHealth', 150);
 
 -- --------------------------------------------------------
 
@@ -128,6 +136,13 @@ CREATE TABLE `employees` (
   `photo` varchar(200) NOT NULL,
   `created_on` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `address`, `birthdate`, `contact_info`, `gender`, `position_id`, `schedule_id`, `photo`, `created_on`) VALUES
+(6, 'ZNI24051', 'Karl Joseph', 'Saycon', 'Gensan', '2020-02-05', '09586856642', 'Male', 2, 4, '', '2020-02-05');
 
 -- --------------------------------------------------------
 
@@ -277,7 +292,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `bank`
@@ -289,7 +304,7 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `cashadvance`
 --
 ALTER TABLE `cashadvance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `deductions`
@@ -301,7 +316,7 @@ ALTER TABLE `deductions`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `overtime`
