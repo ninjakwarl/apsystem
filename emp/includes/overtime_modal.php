@@ -5,46 +5,47 @@
           	<div class="modal-header">
             	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
               		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b>Add Cash Advance</b></h4>
+            	<h4 class="modal-title"><b>Add Overtime</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="cashadvance_add.php">
+            	<form class="form-horizontal" method="POST" action="overtime_add.php">
           		  <div class="form-group">
-                  	<label for="employee" class="col-sm-3 control-label">Agent ID</label>
+                  	<label for="employee" class="col-sm-3 control-label">Employee ID</label>
 
                   	<div class="col-sm-9">
                     	<input type="text" class="form-control" id="employee" name="employee" required>
                   	</div>
                 </div>
                 <div class="form-group">
-                    <label for="amount" class="col-sm-3 control-label">Cash Advance</label>
+                    <label for="datepicker_add" class="col-sm-3 control-label">Date</label>
 
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="amount" name="amount" required>
+                    <div class="col-sm-9"> 
+                      <div class="date">
+                        <input type="text" class="form-control" id="datepicker_add" name="date" required>
+                      </div>
                     </div>
                 </div>
-				<div class="form-group">
-                    <label for="sss" class="col-sm-3 control-label">SSS</label>
+                <div class="form-group">
+                  	<label for="hours" class="col-sm-3 control-label">No. of Hours</label>
+
+                  	<div class="col-sm-9">
+                    	<input type="text" class="form-control" id="hours" name="hours">
+                  	</div>
+                </div>
+                <div class="form-group">
+                  	<label for="mins" class="col-sm-3 control-label">No. of Mins</label>
+
+                  	<div class="col-sm-9">
+                    	<input type="text" class="form-control" id="mins" name="mins">
+                  	</div>
+                </div>
+                 <div class="form-group">
+                    <label for="rate" class="col-sm-3 control-label">Rate</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="sss" name="sss" required>
+                      <input type="text" class="form-control" id="rate" name="rate" required>
                     </div>
                 </div>
-				<div class="form-group">
-                    <label for="pagibig" class="col-sm-3 control-label">Pagibig</label>
-
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="pagibig" name="pagibig" required>
-                    </div>
-                </div>
-				<div class="form-group">
-                    <label for="philhealth" class="col-sm-3 control-label">Philhealth</label>
-
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="philhealth" name="philhealth" required>
-                    </div>
-                </div>
-
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
@@ -62,38 +63,39 @@
           	<div class="modal-header">
             	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
               		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b><span class="date"></span> - <span class="employee_name"></span></b></h4>
+            	<h4 class="modal-title"><b><span class="employee_name"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="cashadvance_edit.php">
-            		<input type="hidden" class="caid" name="id">
+            	<form class="form-horizontal" method="POST" action="overtime_edit.php">
+            		<input type="hidden" class="otid" name="id">
                 <div class="form-group">
-                    <label for="edit_amount" class="col-sm-3 control-label">Cash Advance</label>
+                    <label for="datepicker_edit" class="col-sm-3 control-label">Date</label>
 
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_amount" name="amount" required>
+                    <div class="col-sm-9"> 
+                      <div class="date">
+                        <input type="text" class="form-control" id="datepicker_edit" name="date" required>
+                      </div>
                     </div>
                 </div>
-
-				<div class="form-group">
-                    <label for="edit_sss" class="col-sm-3 control-label">SSS</label>
+                <div class="form-group">
+                    <label for="hours_edit" class="col-sm-3 control-label">No. of Hours</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_sss" name="sss" required>
+                      <input type="text" class="form-control" id="hours_edit" name="hours">
                     </div>
                 </div>
-				<div class="form-group">
-                    <label for="edit_pagibig" class="col-sm-3 control-label">Pagibig</label>
+                <div class="form-group">
+                    <label for="mins_edit" class="col-sm-3 control-label">No. of Mins</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_pagibig" name="pagibig" required>
+                      <input type="text" class="form-control" id="mins_edit" name="mins">
                     </div>
                 </div>
-				<div class="form-group">
-                    <label for="edit_philhealth" class="col-sm-3 control-label">Philhealth</label>
+                 <div class="form-group">
+                    <label for="rate_edit" class="col-sm-3 control-label">Rate</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_philhealth" name="philhealth" required>
+                      <input type="text" class="form-control" id="rate_edit" name="rate" required>
                     </div>
                 </div>
           	</div>
@@ -113,13 +115,13 @@
           	<div class="modal-header">
             	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
               		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b><span class="date"></span></b></h4>
+            	<h4 class="modal-title"><b><span id="overtime_date"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="cashadvance_delete.php">
-            		<input type="hidden" class="caid" name="id">
+            	<form class="form-horizontal" method="POST" action="overtime_delete.php">
+            		<input type="hidden" class="otid" name="id">
             		<div class="text-center">
-	                	<p>DELETE CASH ADVANCE</p>
+	                	<p>DELETE OVERTIME</p>
 	                	<h2 class="employee_name bold"></h2>
 	            	</div>
           	</div>

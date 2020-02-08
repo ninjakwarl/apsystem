@@ -11,12 +11,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Other Deductions
+        Deductions
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Employees</li>
-        <li class="active">Other Deductions</li>
+        <li class="active">Deductions</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -52,34 +51,22 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th class="hidden"></th>
-                  <th>Date</th>
-                  <th>Agent ID</th>
-                  <th>Name</th>
-                  <th>Cash Advance</th>
-                  <th>SSS</th>
-                  <th>Pag-Ibig</th>
-                  <th>Philhealth</th>
+                  <th>Description</th>
+                  <th>Amount</th>
                   <th>Tools</th>
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT *, cashadvance.id AS caid, employees.employee_id AS empid FROM cashadvance LEFT JOIN employees ON employees.id=cashadvance.employee_id ORDER BY date_advance DESC";
+                    $sql = "SELECT * FROM deductions";
                     $query = $conn->query($sql);
                     while($row = $query->fetch_assoc()){
                       echo "
                         <tr>
-                          <td class='hidden'></td>
-                          <td>".date('M d, Y', strtotime($row['date_advance']))."</td>
-                          <td>".$row['empid']."</td>
-                          <td>".$row['firstname'].' '.$row['lastname']."</td>
+                          <td>".$row['description']."</td>
                           <td>".number_format($row['amount'], 2)."</td>
-                          <td>".number_format($row['sss'], 2)."</td>
-                          <td>".number_format($row['pagibig'], 2)."</td>
-                          <td>".number_format($row['philhealth'], 2)."</td>
                           <td>
-                            <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['caid']."'><i class='fa fa-edit'></i> Edit</button>
-                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['caid']."'><i class='fa fa-trash'></i> Delete</button>
+                            <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Edit</button>
+                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['id']."'><i class='fa fa-trash'></i> Delete</button>
                           </td>
                         </tr>
                       ";
@@ -95,7 +82,7 @@
   </div>
     
   <?php include 'includes/footer.php'; ?>
-  <?php include 'includes/cashadvance_modal.php'; ?>
+  <?php include 'includes/deduction_modal.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>
 <script>
@@ -118,19 +105,14 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'cashadvance_row.php',
+    url: 'deduction_row.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){
-      console.log(response);
-      $('.date').html(response.date_advance);
-      $('.employee_name').html(response.firstname+' '+response.lastname);
-      $('.caid').val(response.caid);
+      $('.decid').val(response.id);
+      $('#edit_description').val(response.description);
       $('#edit_amount').val(response.amount);
-      $('#edit_sss').val(response.sss);
-      $('#edit_pagibig').val(response.pagibig);
-      $('#edit_philhealth').val(response.philhealth);
-      
+      $('#del_deduction').html(response.description);
     }
   });
 }

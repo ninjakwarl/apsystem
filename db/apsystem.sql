@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2020 at 11:05 AM
+-- Generation Time: Feb 08, 2020 at 05:52 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -186,10 +186,12 @@ INSERT INTO `position` (`id`, `description`, `rate`) VALUES
 
 CREATE TABLE `sales` (
   `id` int(11) NOT NULL,
+  `salesdate` date NOT NULL,
+  `employee_id` varchar(15) NOT NULL,
   `clientname` varchar(150) NOT NULL,
   `bankname` varchar(150) NOT NULL,
-  `status` varchar(10) NOT NULL,
-  `amount` decimal(10,0) NOT NULL
+  `amount` decimal(10,0) NOT NULL,
+  `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

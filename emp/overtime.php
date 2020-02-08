@@ -11,12 +11,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Other Deductions
+        Overtime
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Employees</li>
-        <li class="active">Other Deductions</li>
+        <li class="active">Overtime</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -54,32 +54,28 @@
                 <thead>
                   <th class="hidden"></th>
                   <th>Date</th>
-                  <th>Agent ID</th>
+                  <th>Employee ID</th>
                   <th>Name</th>
-                  <th>Cash Advance</th>
-                  <th>SSS</th>
-                  <th>Pag-Ibig</th>
-                  <th>Philhealth</th>
+                  <th>No. of Hours</th>
+                  <th>Rate</th>
                   <th>Tools</th>
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT *, cashadvance.id AS caid, employees.employee_id AS empid FROM cashadvance LEFT JOIN employees ON employees.id=cashadvance.employee_id ORDER BY date_advance DESC";
+                    $sql = "SELECT *, overtime.id AS otid, employees.employee_id AS empid FROM overtime LEFT JOIN employees ON employees.id=overtime.employee_id ORDER BY date_overtime DESC";
                     $query = $conn->query($sql);
                     while($row = $query->fetch_assoc()){
                       echo "
                         <tr>
                           <td class='hidden'></td>
-                          <td>".date('M d, Y', strtotime($row['date_advance']))."</td>
+                          <td>".date('M d, Y', strtotime($row['date_overtime']))."</td>
                           <td>".$row['empid']."</td>
                           <td>".$row['firstname'].' '.$row['lastname']."</td>
-                          <td>".number_format($row['amount'], 2)."</td>
-                          <td>".number_format($row['sss'], 2)."</td>
-                          <td>".number_format($row['pagibig'], 2)."</td>
-                          <td>".number_format($row['philhealth'], 2)."</td>
+                          <td>".$row['hours']."</td>
+                          <td>".$row['rate']."</td>
                           <td>
-                            <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['caid']."'><i class='fa fa-edit'></i> Edit</button>
-                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['caid']."'><i class='fa fa-trash'></i> Delete</button>
+                            <button class='btn btn-success btn-sm btn-flat edit' data-id='".$row['otid']."'><i class='fa fa-edit'></i> Edit</button>
+                            <button class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['otid']."'><i class='fa fa-trash'></i> Delete</button>
                           </td>
                         </tr>
                       ";
@@ -95,7 +91,7 @@
   </div>
     
   <?php include 'includes/footer.php'; ?>
-  <?php include 'includes/cashadvance_modal.php'; ?>
+  <?php include 'includes/overtime_modal.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>
 <script>
@@ -118,19 +114,23 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'cashadvance_row.php',
+    url: 'overtime_row.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){
-      console.log(response);
-      $('.date').html(response.date_advance);
+      var time = response.hours;
+      var split = time.split('.');
+      var hour = split[0];
+      var min = '.'+split[1];
+      min = min * 60;
+      console.log(min);
       $('.employee_name').html(response.firstname+' '+response.lastname);
-      $('.caid').val(response.caid);
-      $('#edit_amount').val(response.amount);
-      $('#edit_sss').val(response.sss);
-      $('#edit_pagibig').val(response.pagibig);
-      $('#edit_philhealth').val(response.philhealth);
-      
+      $('.otid').val(response.otid);
+      $('#datepicker_edit').val(response.date_overtime);
+      $('#overtime_date').html(response.date_overtime);
+      $('#hours_edit').val(hour);
+      $('#mins_edit').val(min);
+      $('#rate_edit').val(response.rate);
     }
   });
 }
