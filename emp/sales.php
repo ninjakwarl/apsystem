@@ -71,6 +71,7 @@
                           <td>".$row['employee_id']."</td>
                           <td>".$row['clientname']."</td>
                           <td>".$row['bankname']."</td>
+                          <td>".$row['plantype']."</td>
                           <td>".$row['amount']."</td>
                           <td>".$row['status']."</td>
                           <td>
@@ -118,10 +119,15 @@ function getRow(id){
     data: {id:id},
     dataType: 'json',
     success: function(response){
-      $('.bnkid').val(response.id);
+      $('.slsid').val(response.id);
+      $('#empid').val(response.empid);
+      $('#client').val(response.client);
       $('#bankname').val(response.bankname);
       $('#plantype').val(response.plantype);
-      $('#del_bnk').html(response.bankname);
+      $('#rate').val(response.rate);
+      $('#approval').val(response.approval);
+      $('#del_sls').html(response.client);
+
     }
   });
 }

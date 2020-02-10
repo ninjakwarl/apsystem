@@ -5,8 +5,8 @@
 		$id = $_POST['id'];
 		$bankname = $_POST['bankname'];
 		$plantype = $_POST['plantype'];
-
-		$sql = "UPDATE bank SET bankname = '$bankname', plantype = '$plantype' WHERE id = '$id'";
+        $rate = $_POST['rate'];
+		$sql = "UPDATE bank SET bankname = '$bankname', plantype = '$plantype', rate = '$rate' WHERE id = '$id'";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Deduction updated successfully';
 		}

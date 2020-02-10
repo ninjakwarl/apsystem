@@ -53,6 +53,7 @@
                 <thead>
                   <th>Bank Name</th>
                   <th>Bank Card Type</th>
+                  <th>Rate</th>
                   <th>Tools</th>
                 </thead>
                 <tbody>
@@ -64,6 +65,7 @@
                         <tr>
                           <td>".$row['bankname']."</td>
                           <td>".$row['plantype']."</td>
+                          <td>".number_format($row['rate'], 2)."</td>
                           <td>
                             <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Edit</button>
                             <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['id']."'><i class='fa fa-trash'></i> Delete</button>
@@ -112,6 +114,7 @@ function getRow(id){
       $('.bnkid').val(response.id);
       $('#bankname').val(response.bankname);
       $('#plantype').val(response.plantype);
+      $('#rate').val(response.rate);
       $('#del_bnk').html(response.bankname);
     }
   });

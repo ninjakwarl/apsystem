@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2020 at 05:52 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.1.33
+-- Generation Time: Feb 08, 2020 at 11:22 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.1.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -78,8 +78,16 @@ INSERT INTO `attendance` (`id`, `employee_id`, `date`, `time_in`, `status`, `tim
 CREATE TABLE `bank` (
   `id` int(11) NOT NULL,
   `bankname` varchar(150) NOT NULL,
-  `plantype` varchar(150) NOT NULL
+  `plantype` varchar(150) NOT NULL,
+  `rate` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bank`
+--
+
+INSERT INTO `bank` (`id`, `bankname`, `plantype`, `rate`) VALUES
+(8, 'RCBC', 'CLASSIC', 500);
 
 -- --------------------------------------------------------
 
@@ -125,6 +133,7 @@ CREATE TABLE `deductions` (
 CREATE TABLE `employees` (
   `id` int(11) NOT NULL,
   `employee_id` varchar(15) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `address` text NOT NULL,
@@ -141,8 +150,8 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `address`, `birthdate`, `contact_info`, `gender`, `position_id`, `schedule_id`, `photo`, `created_on`) VALUES
-(6, 'ZNI24051', 'Karl Joseph', 'Saycon', 'Gensan', '2020-02-05', '09586856642', 'Male', 2, 4, '', '2020-02-05');
+INSERT INTO `employees` (`id`, `employee_id`, `password`, `firstname`, `lastname`, `address`, `birthdate`, `contact_info`, `gender`, `position_id`, `schedule_id`, `photo`, `created_on`) VALUES
+(6, 'ZNI24051', '*AD53629193E29C372F0596BA1F53F3CBCEC39D22', 'Karl Joseph', 'Saycon', 'Gensan', '2020-02-05', '09586856642', 'Male', 1, 4, '', '2020-02-05');
 
 -- --------------------------------------------------------
 
@@ -175,8 +184,7 @@ CREATE TABLE `position` (
 --
 
 INSERT INTO `position` (`id`, `description`, `rate`) VALUES
-(1, 'Programmer', 100),
-(2, 'Field Manager', 50);
+(1, 'Admin', 56.5);
 
 -- --------------------------------------------------------
 
@@ -190,9 +198,17 @@ CREATE TABLE `sales` (
   `employee_id` varchar(15) NOT NULL,
   `clientname` varchar(150) NOT NULL,
   `bankname` varchar(150) NOT NULL,
+  `plantype` varchar(50) NOT NULL,
   `amount` decimal(10,0) NOT NULL,
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`id`, `salesdate`, `employee_id`, `clientname`, `bankname`, `plantype`, `amount`, `status`) VALUES
+(5, '2020-02-08', 'ZNI24051', 'Alvin Favila', 'RCBC', 'CLASSIC', '300', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -211,9 +227,6 @@ CREATE TABLE `schedules` (
 --
 
 INSERT INTO `schedules` (`id`, `time_in`, `time_out`) VALUES
-(1, '07:00:00', '16:00:00'),
-(2, '08:00:00', '17:00:00'),
-(3, '09:00:00', '18:00:00'),
 (4, '10:00:00', '19:00:00');
 
 --
@@ -300,7 +313,7 @@ ALTER TABLE `attendance`
 -- AUTO_INCREMENT for table `bank`
 --
 ALTER TABLE `bank`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `cashadvance`
@@ -336,7 +349,7 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `schedules`
