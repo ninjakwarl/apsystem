@@ -19,7 +19,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
+        Employee Dashboard
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -58,13 +58,13 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM employees";
+                $sql = "SELECT * FROM sales";
                 $query = $conn->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
               ?>
 
-              <p>Total Employees</p>
+              <p>Total Approvals</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-stalker"></i>
@@ -78,11 +78,11 @@
           <div class="small-box bg-green">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM attendance";
+                $sql = "SELECT * FROM sales";
                 $query = $conn->query($sql);
                 $total = $query->num_rows;
 
-                $sql = "SELECT * FROM attendance WHERE status = 1";
+                $sql = "SELECT * FROM sales WHERE status = 1";
                 $query = $conn->query($sql);
                 $early = $query->num_rows;
                 
@@ -142,39 +142,6 @@
         <!-- ./col -->
       </div>
       <!-- /.row -->
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Monthly Attendance Report</h3>
-              <div class="box-tools pull-right">
-                <form class="form-inline">
-                  <div class="form-group">
-                    <label>Select Year: </label>
-                    <select class="form-control input-sm" id="select_year">
-                      <?php
-                        for($i=2015; $i<=2065; $i++){
-                          $selected = ($i==$year)?'selected':'';
-                          echo "
-                            <option value='".$i."' ".$selected.">".$i."</option>
-                          ";
-                        }
-                      ?>
-                    </select>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="box-body">
-              <div class="chart">
-                <br>
-                <div id="legend" class="text-center"></div>
-                <canvas id="barChart" style="height:350px"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       </section>
       <!-- right col -->

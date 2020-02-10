@@ -32,8 +32,8 @@
       		</div>
     	</form>
   	</div>
-	  <button  onclick="window.location.href='/apsystem/'" class="btn btn-primary btn-block btn-flat"><i class="fa fa-user-o"></i>&nbsp;   Time Stamp Sign In</button>
-    <button  onclick="window.location.href='#'" class="btn btn-primary btn-block btn-flat"><i class="fa fa-user-o"></i>&nbsp;   Employee Sign In</button>
+	  <!--button  onclick="window.location.href='/apsystem/'" class="btn btn-primary btn-block btn-flat"><i class="fa fa-user-o"></i>&nbsp;   Time Stamp Sign In</button-->
+    <button  onclick="window.location.href='/apsystem/emp/'" class="btn btn-primary btn-block btn-flat"><i class="fa fa-user-o"></i>&nbsp;   Employee Sign In</button>
   	<?php
   		if(isset($_SESSION['error'])){
   			echo "

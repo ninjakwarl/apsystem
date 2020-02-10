@@ -14,32 +14,14 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">REPORTS</li>
-        <li class=""><a href="home.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class=""><a href="home.php"><i class="fa fa-dashboard"></i> <span> Dashboard</span></a></li>
         <li class="header">MANAGE</li>
         
-        <li><a href="attendance.php"><i class="fa fa-calendar"></i> <span>Attendance</span></a></li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users"></i>
-            <span>Agents</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="employee.php"><i class="fa fa-circle-o"></i> Agent List</a></li>
-            <li><a href="overtime.php"><i class="fa fa-circle-o"></i> Overtime</a></li>
-            <li><a href="cashadvance.php"><i class="fa fa-circle-o"></i> Other Deductions</a></li>
-            <li><a href="schedule.php"><i class="fa fa-circle-o"></i> Schedules</a></li>
-          </ul>
-        </li>
         <li><a href="sales.php"><i class="fa fa-dollar"></i> <span>Sales</span></a></li>
         <li><a href="bank.php"><i class="fa fa-bank"></i> <span>Maintain Bank</span></a></li>
         <li><a href="deduction.php"><i class="fa fa-file-text"></i> <span>Deductions</span></a></li>
         <li><a href="position.php"><i class="fa fa-suitcase"></i> <span>Agent Roles</span></a></li>
-        <li class="header">PRINTABLES</li>
-        <li><a href="payroll.php"><i class="fa fa-files-o"></i> <span>Payroll</span></a></li>
-        <li><a href="schedule_employee.php"><i class="fa fa-clock-o"></i> <span>Schedule</span></a></li>
+       
       </ul>
     </section>
     <!-- /.sidebar -->

@@ -105,7 +105,7 @@
                       $carow = $caquery->fetch_assoc();
                       $cashadvance = $carow['cashamount'];
 
-                      $gross = $row['rate'] * $row['total_hr'];
+                      $gross = $row['rate'] * $row['total_hr'] + $row['totalsales'];
                       $total_deduction = $deduction + $cashadvance;
                       $net = $gross - $total_deduction;
 
