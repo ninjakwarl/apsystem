@@ -58,7 +58,7 @@
           <div class="small-box bg-green">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM sales WHERE status = 'Approved'";
+                $sql = "SELECT * FROM sales WHERE employee_id = '$user[employee_id]' and status = 'Approved'";
                 $query = $conn->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
@@ -69,7 +69,7 @@
             <div class="icon">
               <i class="ion ion-person-stalker"></i>
             </div>
-            <a href="employee.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!--a href="employee.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a-->
           </div>
         </div>
         <!-- ./col -->
@@ -78,7 +78,7 @@
           <div class="small-box bg-red">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM sales WHERE status ='Denied'";
+                $sql = "SELECT * FROM sales WHERE employee_id = '$user[employee_id]' and status ='Denied'";
                 $query = $conn->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
@@ -89,17 +89,17 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="attendance.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!--a href="attendance.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a-->
           </div>
         </div>
         <!-- ./col -->
 
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-yellow">
+          <div class="small-box bg-gray">
             <div class="inner">
             <?php
-                $sql = "SELECT * FROM sales WHERE status ='Pending'";
+                $sql = "SELECT * FROM sales WHERE employee_id = '$user[employee_id]' and status ='Pending'";
                 $query = $conn->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
@@ -110,14 +110,14 @@
             <div class="icon">
               <i class="ion ion-clock"></i>
             </div>
-            <a href="attendance.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!--a href="attendance.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a-->
           </div>
         </div>
         
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-red">
+          <div class="small-box bg-orange">
             <div class="inner">
               <?php
                 $sql = "SELECT * FROM attendance WHERE date = '$today' AND status = 0";
@@ -131,7 +131,7 @@
             <div class="icon">
               <i class="ion ion-alert-circled"></i>
             </div>
-            <a href="attendance.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!--a href="attendance.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a-->
           </div>
         </div>
         <!-- ./col -->

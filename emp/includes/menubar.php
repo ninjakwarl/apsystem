@@ -18,7 +18,7 @@
         <li class="header">MANAGE</li>
         
         <li><a href="sales.php"><i class="fa fa-dollar"></i> <span>Sales</span></a></li>
-        <li><a href="bank.php"><i class="fa fa-bank"></i> <span>Maintain Bank</span></a></li>
+  
 
        
       </ul>

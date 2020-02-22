@@ -58,16 +58,16 @@
                   <th>Type</th>
                   <th>Rate</th>
                   <th>Approval Status</th>
-                  <th>Tools</th>
+             
                 </thead>
                 <tbody>
                   
                   <?php
+                 
                     
-                  
-                    $sql = "SELECT * FROM sales";
-                    
+                    $sql = "SELECT * FROM sales where employee_id = '$user[employee_id]'";
                     $query = $conn->query($sql);
+
                     while($row = $query->fetch_assoc()){
                       echo "
                         <tr>
@@ -78,10 +78,7 @@
                           <td>".$row['plantype']."</td>
                           <td>".$row['amount']."</td>
                           <td>".$row['status']."</td>
-                          <td>
-                            <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Edit</button>
-                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['id']."'><i class='fa fa-trash'></i> Delete</button>
-                          </td>
+                          
                         </tr>
                       ";
                     }
