@@ -40,8 +40,8 @@
       <span class="result"><i class="icon fa fa-warning"></i> <span class="message"></span></span>
     </div>
   		
-    <button  onclick="window.location.href='/apsystem/admin/'" class="btn btn-primary btn-block btn-flat"><i class="fa fa-user-o"></i>&nbsp;   Admin Sign In</button>
-    <button  onclick="window.location.href='/apsystem/emp/'" class="btn btn-primary btn-block btn-flat"><i class="fa fa-user-o"></i>&nbsp;   Employee Sign In</button>
+    <!--button  onclick="window.location.href='/apsystem/admin/'" class="btn btn-primary btn-block btn-flat"><i class="fa fa-user-o"></i>&nbsp;   Admin Sign In</button-->
+    <!--button  onclick="window.location.href='/apsystem/emp/'" class="btn btn-primary btn-block btn-flat"><i class="fa fa-user-o"></i>&nbsp;   Employee Sign In</button-->
 
 </div>
 
