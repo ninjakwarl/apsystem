@@ -24,6 +24,13 @@
                   	</div>
                 </div>
                 <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">Password</label>
+
+                    <div class="col-sm-9"> 
+                      <input type="password" class="form-control" id="password" name="password" placeholder="<?php echo $user['password']; ?>">
+                    </div>
+                </div>
+                <div class="form-group">
                   	<label for="address" class="col-sm-3 control-label">Address</label>
 
                   	<div class="col-sm-9">
@@ -134,6 +141,13 @@
 
                     <div class="col-sm-9">
                       <input type="text" class="form-control" id="edit_lastname" name="lastname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">Password</label>
+
+                    <div class="col-sm-9"> 
+                      <input type="password" class="form-control" id="password" name="password" placeholder="<?php echo $user['password']; ?>">
                     </div>
                 </div>
                 <div class="form-group">

@@ -19,8 +19,7 @@
         
         <li><a href="sales.php"><i class="fa fa-dollar"></i> <span>Sales</span></a></li>
         <li><a href="bank.php"><i class="fa fa-bank"></i> <span>Maintain Bank</span></a></li>
-        <li><a href="deduction.php"><i class="fa fa-file-text"></i> <span>Deductions</span></a></li>
-        <li><a href="position.php"><i class="fa fa-suitcase"></i> <span>Agent Roles</span></a></li>
+
        
       </ul>
     </section>

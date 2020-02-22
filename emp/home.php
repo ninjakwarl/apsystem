@@ -19,7 +19,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Employees Dashboard
+        Employee Dashboard
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -55,10 +55,10 @@
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-aqua">
+          <div class="small-box bg-green">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM sales WHERE status = 1";
+                $sql = "SELECT * FROM sales WHERE status = 'Approved'";
                 $query = $conn->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
@@ -75,23 +75,16 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-green">
+          <div class="small-box bg-red">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM sales";
+                $sql = "SELECT * FROM sales WHERE status ='Denied'";
                 $query = $conn->query($sql);
-                $total = $query->num_rows;
 
-                $sql = "SELECT * FROM sales WHERE status = 1";
-                $query = $conn->query($sql);
-                $early = $query->num_rows;
-                
-                $percentage = ($early/$total)*100;
-
-                echo "<h3>".number_format($percentage, 2)."<sup style='font-size: 20px'>%</sup></h3>";
+                echo "<h3>".$query->num_rows."</h3>";
               ?>
           
-              <p>On Time Percentage</p>
+              <p>Denied</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -105,14 +98,14 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <?php
-                $sql = "SELECT * FROM attendance WHERE date = '$today' AND status = 1";
+            <?php
+                $sql = "SELECT * FROM sales WHERE status ='Pending'";
                 $query = $conn->query($sql);
 
-                echo "<h3>".$query->num_rows."</h3>"
+                echo "<h3>".$query->num_rows."</h3>";
               ?>
              
-              <p>On Time Today</p>
+              <p>On Pending</p>
             </div>
             <div class="icon">
               <i class="ion ion-clock"></i>

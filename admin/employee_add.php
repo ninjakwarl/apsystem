@@ -4,6 +4,8 @@
 	if(isset($_POST['add'])){
 		$firstname = $_POST['firstname'];
 		$lastname = $_POST['lastname'];
+		$password = $_POST['password'];
+		$pass = password_hash($password, PASSWORD_DEFAULT);
 		$address = $_POST['address'];
 		$birthdate = $_POST['birthdate'];
 		$contact = $_POST['contact'];
@@ -11,6 +13,7 @@
 		$position = $_POST['position'];
 		$schedule = $_POST['schedule'];
 		$filename = $_FILES['photo']['name'];
+
 		if(!empty($filename)){
 			move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);	
 		}
@@ -25,7 +28,7 @@
 		}
 		$employee_id = substr(str_shuffle($letters), 0, 3).substr(str_shuffle($numbers), 0, 5);
 		//
-		$sql = "INSERT INTO employees (employee_id, firstname, lastname, address, birthdate, contact_info, gender, position_id, schedule_id, photo, created_on) VALUES ('$employee_id', '$firstname', '$lastname', '$address', '$birthdate', '$contact', '$gender', '$position', '$schedule', '$filename', NOW())";
+		$sql = "INSERT INTO employees (employee_id, firstname, lastname, password, address, birthdate, contact_info, gender, position_id, schedule_id, photo, created_on) VALUES ('$employee_id', '$firstname', '$lastname', '$pass', '$address', '$birthdate', '$contact', '$gender', '$position', '$schedule', '$filename', NOW())";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Employee added successfully';
 		}
