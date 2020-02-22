@@ -61,8 +61,12 @@
                   <th>Tools</th>
                 </thead>
                 <tbody>
+                  
                   <?php
+                    
+                  
                     $sql = "SELECT * FROM sales";
+                    
                     $query = $conn->query($sql);
                     while($row = $query->fetch_assoc()){
                       echo "
