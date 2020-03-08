@@ -38,13 +38,18 @@
 		$empid = $row['empid'];
                       
       	$casql = "SELECT *, SUM(amount)+ SUM(sss)+ SUM(pagibig)+ SUM(philhealth) AS cashamount FROM cashadvance WHERE employee_id='$empid' AND date_advance BETWEEN '$from' AND '$to' group by amount, sss, pagibig, philhealth";
-      
+		  $salesdeduct = "SELECT SUM(approvededuction) AS aprdeduc FROM sales WHERE employee_id='$empid' and status = 'Approved'";
+		  
       	$caquery = $conn->query($casql);
       	$carow = $caquery->fetch_assoc();
-      	$cashadvance = $carow['cashamount'];
+		$cashadvance = $carow['cashamount'];
+		  
+		  $saquery = $conn->query($salesdeduct); 
+		  $sarow = $saquery->fetch_assoc();
+		  $salesaprdeduc = $sarow['aprdeduc'];
 
 		$gross = $row['rate'] * $row['total_hr'];
-		$total_deduction = $deduction + $cashadvance;
+		$total_deduction = $deduction + $cashadvance + $salesaprdeduc;
   		$net = $gross - $total_deduction;
 
 		$contents .= '

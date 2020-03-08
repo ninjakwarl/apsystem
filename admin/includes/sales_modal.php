@@ -36,13 +36,7 @@ $dtype = mysqli_query($conn,$qtype);
                 </div>
 
 
-                <div class="form-group">
-                  	<label for="client" class="col-sm-3 control-label">Client Name</label>
-                  	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="client" name="client" required>
-                  	</div>
-                </div>
-              
+               
 				<div class="form-group">
                   	<label for="bankname" class="col-sm-3 control-label">Bank Name</label>
  
@@ -138,12 +132,6 @@ $dtype = mysqli_query($conn,$qtype);
                 </div>
 
 
-                <div class="form-group">
-                  	<label for="client" class="col-sm-3 control-label">Client Name</label>
-                  	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="client" name="client" required>
-                  	</div>
-                </div>
               
 				<div class="form-group">
                   	<label for="bankname" class="col-sm-3 control-label">Bank Name</label>

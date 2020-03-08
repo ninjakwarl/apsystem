@@ -53,7 +53,6 @@
                 <thead>
                   <th>Sales Date</th>
                   <th>Agent ID</th>
-                  <th>Client</th>
                   <th>Bank</th>
                   <th>Type</th>
                   <th>Rate</th>
@@ -69,7 +68,6 @@
                         <tr>
                         <td>".$row['salesdate']."</td>
                           <td>".$row['employee_id']."</td>
-                          <td>".$row['clientname']."</td>
                           <td>".$row['bankname']."</td>
                           <td>".$row['plantype']."</td>
                           <td>".$row['amount']."</td>

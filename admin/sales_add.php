@@ -9,11 +9,20 @@
 		$rate = $_POST['rate'];
 		$approval = $_POST['approval'];
 
-		$sql = "INSERT INTO sales (salesdate ,employee_id, clientname, bankname, plantype, amount, status) VALUES (NOW(),'$empid', '$client', '$bankname', '$plantype', '$rate', '$approval')";
-        	
+		$sql = "INSERT INTO sales (salesdate ,employee_id, bankname, plantype, amount, status) VALUES (NOW(),'$empid', '$bankname', '$plantype', '$rate', '$approval')";
+		
 
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Sales added successfully';
+		}
+		else{
+			$_SESSION['error'] = $conn->error;
+		}
+		
+		$sql1 = "UPDATE `sales` SET approvededuction = 100 WHERE status = 'Approved'";
+
+		if($conn->query($sql1)){
+		
 		}
 		else{
 			$_SESSION['error'] = $conn->error;
