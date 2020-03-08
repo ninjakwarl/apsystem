@@ -4,7 +4,7 @@
 	function generateRow($from, $to, $conn, $deduction){
 		$contents = '';
 	 	
-		$sql = "SELECT *, sum(num_hr) AS total_hr, attendance.employee_id AS empid FROM attendance LEFT JOIN employees ON employees.id=attendance.employee_id LEFT JOIN position ON position.id=employees.position_id WHERE date BETWEEN '$from' AND '$to' GROUP BY attendance.employee_id ORDER BY employees.lastname ASC, employees.firstname ASC";
+		$sql = "SELECT *, sum(num_hr) AS total_hr, SUM(sales.amount) AS totalsales, attendance.employee_id AS empid FROM attendance LEFT JOIN employees ON employees.id=attendance.employee_id LEFT JOIN position ON position.id=employees.position_id LEFT JOIN sales ON sales.employee_id=employees.employee_id WHERE date BETWEEN '$from' AND '$to' GROUP BY attendance.employee_id ORDER BY employees.lastname ASC, employees.firstname ASC";
 
 		$query = $conn->query($sql);
 		$total = 0;
@@ -12,7 +12,8 @@
 			$empid = $row['empid'];
                       
 	      	$casql = "SELECT *,  SUM(amount)+ SUM(sss)+ SUM(pagibig)+ SUM(philhealth) AS cashamount FROM cashadvance WHERE employee_id='$empid' AND date_advance BETWEEN '$from' AND '$to' group by amount, sss, pagibig, philhealth";
-			$salesdeduct = "SELECT SUM(approvededuction) AS aprdeduc FROM sales WHERE employee_id='$empid' and status = 'Approved'";
+			
+			$salesdeduct = "SELECT sa.*, SUM(sa.approvededuction) AS aprdeduc FROM sales sa LEFT JOIN employees es ON es.employee_id = sa.employee_id WHERE es.id='$empid' and status = 'Approved' AND sa.salesdate BETWEEN '$from' AND '$to' group by approvededuction";
 			  
 	      	$caquery = $conn->query($casql);
 	      	$carow = $caquery->fetch_assoc();
@@ -22,7 +23,7 @@
             $sarow = $saquery->fetch_assoc();
             $salesaprdeduc = $sarow['aprdeduc'];
 
-			$gross = $row['rate'] * $row['total_hr'];
+			$gross = $row['rate'] * $row['total_hr'] + $row['totalsales'];
 			$total_deduction = $deduction + $cashadvance + $salesaprdeduc;
       		$net = $gross - $total_deduction;
 

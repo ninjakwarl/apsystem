@@ -101,7 +101,7 @@
                       
                       $casql = "SELECT *, SUM(amount)+ SUM(sss)+ SUM(pagibig)+ SUM(philhealth) AS cashamount FROM cashadvance WHERE employee_id='$empid' AND date_advance BETWEEN '$from' AND '$to' group by amount,sss,pagibig,philhealth";
                       
-                      $salesdeduct = "SELECT *, SUM(approvededuction) AS aprdeduc FROM sales WHERE employee_id='$empid' and status = 'Approved' group by approvededuction";
+                      $salesdeduct = "SELECT sa.*, SUM(sa.approvededuction) AS aprdeduc FROM sales sa LEFT JOIN employees es ON es.employee_id = sa.employee_id WHERE es.id='$empid' and status = 'Approved' AND sa.salesdate BETWEEN '$from' AND '$to' group by approvededuction";
 
                       $caquery = $conn->query($casql);
                       $carow = $caquery->fetch_assoc();
@@ -121,7 +121,7 @@
                           <td>".$row['employee_id']."</td>
                           <td>".number_format($gross, 2)."</td>
                           <td>".number_format($deduction, 2)."</td>
-                          <td>".number_format($cashadvance, 2)."</td>
+                          <td>".number_format($total_deduction, 2)."</td>
                           <td>".number_format($net, 2)."</td>
                         </tr>
                       ";
