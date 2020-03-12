@@ -13,15 +13,16 @@
                       
 	      	$casql = "SELECT *,  SUM(amount)+ SUM(sss)+ SUM(pagibig)+ SUM(philhealth) AS cashamount FROM cashadvance WHERE employee_id='$empid' AND date_advance BETWEEN '$from' AND '$to' group by amount, sss, pagibig, philhealth";
 			
-			$salesdeduct = "SELECT sa.*, SUM(sa.approvededuction) AS aprdeduc FROM sales sa LEFT JOIN employees es ON es.employee_id = sa.employee_id WHERE es.id='$empid' and status = 'Approved' AND sa.salesdate BETWEEN '$from' AND '$to' group by approvededuction";
-			  
+			$salesdeduct = "SELECT sa.*, SUM(sa.approvededuction) AS aprdeduc, COUNT(status) as cntaprv FROM sales sa LEFT JOIN employees es ON es.employee_id = sa.employee_id WHERE es.id='$empid' and status = 'Approved' AND sa.salesdate BETWEEN '$from' AND '$to' group by approvededuction";
+  
 	      	$caquery = $conn->query($casql);
 	      	$carow = $caquery->fetch_assoc();
 			$cashadvance = $carow['cashamount'];
 			  
 			$saquery = $conn->query($salesdeduct); 
             $sarow = $saquery->fetch_assoc();
-            $salesaprdeduc = $sarow['aprdeduc'];
+			$salesaprdeduc = $sarow['aprdeduc'];
+			$salescount = $sarow['cntaprv'];
 
 			$gross = $row['rate'] * $row['total_hr'] + $row['totalsales'];
 			$total_deduction = $deduction + $cashadvance + $salesaprdeduc;
@@ -32,6 +33,9 @@
 			<tr>
 				<td>'.$row['lastname'].', '.$row['firstname'].'</td>
 				<td>'.$row['employee_id'].'</td>
+				<td align="right">'.number_format($cashadvance, 2).'</td>
+				<td align="right">'.number_format($salesaprdeduc, 2).'</td>
+				<td align="right">'.number_format($salescount).'</td>
 				<td align="right">'.number_format($net, 2).'</td>
 			</tr>
 			';
@@ -39,7 +43,7 @@
 
 		$contents .= '
 			<tr>
-				<td colspan="2" align="right"><b>Total</b></td>
+				<td colspan="5" align="right"><b>Total</b></td>
 				<td align="right"><b>'.number_format($total, 2).'</b></td>
 			</tr>
 		';
@@ -80,9 +84,12 @@
       	<h4 align="center">'.$from_title." - ".$to_title.'</h4>
       	<table border="1" cellspacing="0" cellpadding="3">  
            <tr>  
-           		<th width="40%" align="center"><b>Employee Name</b></th>
-                <th width="30%" align="center"><b>Employee ID</b></th>
-				<th width="30%" align="center"><b>Net Pay</b></th> 
+           		<th width="20%" align="center"><b>Agent Name</b></th>
+				<th width="15%" align="center"><b>Agent ID</b></th>
+				<th width="15%" align="center"><b>Cash Advance</b></th>
+				<th width="15%" align="center"><b>Savings Bond</b></th>
+				<th width="15%" align="center"><b>Approvals</b></th>
+				<th width="15%" align="center"><b>Net Pay</b></th> 
            </tr>  
       ';  
     $content .= generateRow($from, $to, $conn, $deduction);  
