@@ -119,7 +119,6 @@ function getRow(id){
     success: function(response){
       $('.slsid').val(response.id);
       $('#empid').val(response.empid);
-      $('#client').val(response.client);
       $('#bankname').val(response.bankname);
       $('#plantype').val(response.plantype);
       $('#rate').val(response.rate);

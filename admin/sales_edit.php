@@ -4,7 +4,6 @@
 	if(isset($_POST['edit'])){
 		$id = $_POST['id'];
 		$empid = $_POST['empid'];
-		$client = $_POST['client'];
 		$bankname = $_POST['bankname'];
 		$plantype = $_POST['plantype'];
 		$rate = $_POST['rate'];
