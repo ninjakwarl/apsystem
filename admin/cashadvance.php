@@ -100,19 +100,21 @@
 <?php include 'includes/scripts.php'; ?>
 <script>
 $(function(){
-  $('.edit').click(function(e){
+  
+  $( ".table" ).on( "click", ".edit", function(e) {
     e.preventDefault();
     $('#edit').modal('show');
     var id = $(this).data('id');
     getRow(id);
-  });
+});
 
-  $('.delete').click(function(e){
+$( ".table" ).on( "click", ".delete", function(e) {
     e.preventDefault();
     $('#delete').modal('show');
     var id = $(this).data('id');
     getRow(id);
-  });
+});
+
 });
 
 function getRow(id){
