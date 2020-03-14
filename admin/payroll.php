@@ -59,7 +59,9 @@
                     </div>
                     <input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range" value="<?php echo (isset($_GET['range'])) ? $_GET['range'] : $range_from.' - '.$range_to; ?>">
                   </div>
-                  <button type="button" class="btn btn-success btn-sm btn-flat" id="payroll"><span class="glyphicon glyphicon-print"></span> Payroll</button>
+                  <button type="button" class="btn btn-success btn-sm btn-flat" id="wpayroll"><span class="glyphicon glyphicon-print"></span> Weekly Payroll</button>
+                  <button type="button" class="btn btn-success btn-sm btn-flat" id="payroll"><span class="glyphicon glyphicon-print"></span> Admin Payroll</button>
+                  <button type="button" class="btn btn-success btn-sm btn-flat" id="apayroll"><span class="glyphicon glyphicon-print"></span> All Payroll</button>
                   <button type="button" class="btn btn-primary btn-sm btn-flat" id="payslip"><span class="glyphicon glyphicon-print"></span> Payslip</button>
                 </form>
               </div>
@@ -160,10 +162,16 @@ $(function(){
     var range = encodeURI($(this).val());
     window.location = 'payroll.php?range='+range;
   });
-
-  $('#payroll').click(function(e){
+ 
+  $('#wpayroll').click(function(e){
     e.preventDefault();
-    $('#payForm').attr('action', 'payroll_generate.php');
+    $('#payForm').attr('action', 'payroll_generate_weekly.php');
+    $('#payForm').submit();
+  });
+
+  $('#apayroll').click(function(e){
+    e.preventDefault();
+    $('#payForm').attr('action', 'payroll_generate_all.php');
     $('#payForm').submit();
   });
 
